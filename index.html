@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff80ab;
+            --dark-pink: #c94b7b;
+            --bg-color: #fff0f3;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-color);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(255, 128, 171, 0.3);
+            width: 90%;
+            max-width: 450px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            border: 2px solid white;
+        }
+
+        h1 { 
+            color: #d32f2f; 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        button {
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #yesBtn { 
+            background-color: #4caf50; 
+            color: white; 
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            display: none;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        #noBtn {
+            background-color: var(--primary-pink);
+            color: white;
+            padding: 20px 60px;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(255, 128, 171, 0.4);
+        }
+
+        /* Slideshow Styling */
+        #slideshow { 
+            display: none; 
+            animation: fadeIn 1s ease-in;
+        }
+
+        .slide {
+			width: 100%;
+			height: 280px;
+			object-fit: cover;
+			/* Zentriert das Bild horizontal und vertikal innerhalb des Rahmens */
+			object-position: center; 
+			border-radius: 20px;
+			margin-top: 20px;
+			box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+			border: 5px solid white;
+    
+			/* Der Fade-Effekt */
+			display: none; /* Wird via JS gesteuert */
+			animation: fadeEffect 0.8s ease-in-out;
+		}
+
+		/* Definition der Einblend-Animation */
+		@keyframes fadeEffect {
+			from { opacity: 0.4; }
+			to { opacity: 1; }
+		}
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hintergrund-Deko */
+        .heart {
+            position: absolute;
+            color: var(--primary-pink);
+            opacity: 0.5;
+            pointer-events: none;
+            animation: float 4s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div id="mainContent">
+        <h1 id="question">Will you be my Valentine? ❤️</h1>
+        <div class="buttons">
+            <button id="noBtn" onmouseover="escapeAndReveal()">No</button>
+            <button id="yesBtn" onclick="showLove()">Yes! 😍</button>
+        </div>
+    </div>
+
+    <div id="slideshow">
+        <h1>YAY! ❤️</h1>
+        <p style="color: #666;">Unfortunately I can´t be with you today, <br> 
+		but I hope these otters put a smile in your face 🥰</p>
+        <img class="slide" src="https://i.pinimg.com/736x/3e/c7/b2/3ec7b23c7e2e20178b30df8ce3f7c6b5.jpg">
+        <img class="slide" src="https://miro.medium.com/v2/resize:fit:2000/1*xcdwakgStLJQA4zgoRH3fQ.jpeg">
+        <img class="slide" src="https://i.natgeofe.com/n/fa3bf2b9-81d2-417e-8cbd-ff1a178cc3da/Sea-Otter_Protecting-Sealife_FAMILY_0522.jpg">
+		<img class="slide" src="https://www.vmcdn.ca/f/files/via/import/2018/09/21091328_sea-otters-rescued.jpg">
+		<img class="slide" src="https://i.pinimg.com/474x/27/24/d9/2724d9bb736be296415b5fa2406d8043.jpg">
+		<img class="slide" src="https://i.pinimg.com/736x/bf/d9/a4/bfd9a4c45175268c4e3426188a44563b.jpg">
+		<img class="slide" src="https://blog.nwf.org/wp-content/blogs.dir/11/files/2012/09/Sea-Otter-LeDent.jpg">
+		<img class="slide" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3M0TlDRiY_K9o76-usctCepiTdDv1qmYj8A&s">
+		<img class="slide" src="https://www.ncaquariums.com/assets/2815/pasted_otter_pups_stella_mae_and_selene.jpg">
+		<img class="slide" src="https://www.swr.de/swraktuell/rheinland-pfalz/kaiserslautern/1757491117921%2Cotter-babys-zoo-kaiserslautern-besucher-100~_v-16x9@2dL_-6c42aff4e68b43c7868c3240d3ebfa29867457da.jpg">
+    </div>
+</div>
+
+	<audio id="bgMusic" loop>
+		<source src=" LINK EINFÜGEN " type="audio/mpeg">
+	</audio>
+	
+<script>
+    // 1. Hintergrund-Herzen erstellen (bleibt gleich)
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+        heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+        document.body.appendChild(heart);
+        
+        setTimeout(() => { heart.remove(); }, 5000);
+    }
+    setInterval(createHeart, 300);
+
+    let hasEscaped = false;
+    let currentScale = 1; // Variable außerhalb speichern für besseres Tracking
+
+    function escapeAndReveal() {
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+
+        // Initialisierung beim ersten Hover
+        if (!hasEscaped) {
+            yesBtn.style.display = 'block';
+            yesBtn.style.animation = 'fadeIn 0.5s forwards';
+            document.getElementById('question').innerText = "Wait... did you mean this one? 😉";
+            
+            // CSS Übergang für flüssige Bewegung hinzufügen
+            noBtn.style.transition = 'all 0.3s ease-out';
+            hasEscaped = true;
+        }
+
+        // Sicherheitsabstand zum Rand (Padding)
+        const padding = 20; 
+        
+        // Verfügbaren Platz berechnen
+        const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+        const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+        // Neue Position berechnen (mindestens 'padding' Pixel vom Rand entfernt)
+        const x = Math.max(padding, Math.random() * maxX);
+        const y = Math.max(padding, Math.random() * maxY);
+        
+        // Position anwenden
+        noBtn.style.position = 'fixed'; 
+        noBtn.style.left = x + 'px';
+        noBtn.style.top = y + 'px';
+        
+        // Verkleinerungseffekt (stoppt bei 0.5facher Größe)
+        if (currentScale > 0.5) {
+            currentScale -= 0.1;
+            noBtn.style.transform = `scale(${currentScale})`;
+        }
+    }
+
+    // --- Restliche Funktionen (showLove & startSlideshow) bleiben gleich ---
+    let slideIndex = 0;
+    function showLove() {
+        document.getElementById('mainContent').style.display = 'none';
+        document.getElementById('slideshow').style.display = 'block';
+        setInterval(createHeart, 100);
+        startSlideshow();
+    }
+
+    function startSlideshow() {
+        const slides = document.getElementsByClassName("slide");
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1; }    
+        slides[slideIndex-1].style.display = "block";  
+        setTimeout(startSlideshow, 2500);
+    }
+	
+	function showLove() {
+    const music = document.getElementById('bgMusic');
+    music.volume = 0; // Startet lautlos
+    music.play();
+
+    // Sanftes Einblenden der Musik über 2 Sekunden
+    let fadeIn = setInterval(() => {
+        if (music.volume < 0.4) {
+            music.volume += 0.05;
+        } else {
+            clearInterval(fadeIn);
+        }
+    }, 200);
+
+    document.getElementById('mainContent').style.display = 'none';
+    document.getElementById('slideshow').style.display = 'block';
+    setInterval(createHeart, 100);
+    startSlideshow();
+	}
+	
+</script>
+
+</body>
+</html>
+
+
+
