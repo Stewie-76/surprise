@@ -26,12 +26,12 @@
 
         #container {
             background: rgba(255, 255, 255, 0.9);
-            padding: 3rem;
+            padding: 2rem;
             border-radius: 30px;
             box-shadow: 0 20px 50px rgba(255, 128, 171, 0.3);
             width: 90%;
             max-width: 450px;
-            min-height: 400px;
+            min-height: 480px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -44,15 +44,16 @@
         h1 { 
             color: #d32f2f; 
             font-family: 'Dancing Script', cursive; 
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
         }
 
-        .buttons {
+        .buttons-wrapper {
+            position: relative;
+            height: 120px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 20px;
             margin-top: 20px;
         }
 
@@ -63,63 +64,60 @@
             transition: transform 0.2s, box-shadow 0.2s;
             font-weight: 600;
             font-family: 'Quicksand', sans-serif;
-        }
-
-        button:active {
-            transform: scale(0.95);
-        }
-
-        #yesBtn { 
-            background-color: #4caf50; 
-            color: white; 
             padding: 15px 40px;
-            font-size: 1.2rem;
-            display: none;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
         }
-        
+
         #noBtn {
             background-color: var(--primary-pink);
             color: white;
-            padding: 20px 60px;
-            font-size: 1.8rem;
-            box-shadow: 0 4px 15px rgba(255, 128, 171, 0.4);
+            font-size: 1.2rem;
+            z-index: 20;
+            position: relative; 
         }
 
-        /* Slideshow Styling */
-        #slideshow { 
+        #yesBtn, #continueBtn { 
+            background-color: #4caf50; 
+            color: white; 
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        #yesBtn {
             display: none; 
-            animation: fadeIn 1s ease-in;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -20%); 
+            z-index: 10;
         }
 
-        .slide {
-			width: 100%;
-			height: 280px;
-			object-fit: cover;
-			/* Zentriert das Bild horizontal und vertikal innerhalb des Rahmens */
-			object-position: center; 
-			border-radius: 20px;
-			margin-top: 20px;
-			box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-			border: 5px solid white;
-    
-			/* Der Fade-Effekt */
-			display: none; /* Wird via JS gesteuert */
-			animation: fadeEffect 0.8s ease-in-out;
-		}
+        #continueBtn {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            padding: 12px 30px;
+            background-color: var(--dark-pink);
+        }
 
-		/* Definition der Einblend-Animation */
-		@keyframes fadeEffect {
-			from { opacity: 0.4; }
-			to { opacity: 1; }
-		}
+        #slideshow, #celebration { 
+            display: none; 
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        .slide, .celebrate-gif {
+            width: 100%;
+            max-height: 280px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-top: 15px;
+            border: 5px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* Hintergrund-Deko */
         .heart {
             position: absolute;
             color: var(--primary-pink);
@@ -138,36 +136,41 @@
 
 <div id="container">
     <div id="mainContent">
+        <img src="https://will-you-b-my-valentine.vercel.app/_next/image?url=%2Fplease.gif&w=384&q=75" alt="Please" style="width: 140px; border-radius: 15px; margin-bottom: 10px;">
         <h1 id="question">Will you be my Valentine? ❤️</h1>
-        <div class="buttons">
+        <div class="buttons-wrapper">
             <button id="noBtn" onmouseover="escapeAndReveal()">No</button>
-            <button id="yesBtn" onclick="showLove()">Yes! 😍</button>
+            <button id="yesBtn" onclick="showCelebration()">Yes! 😍</button>
         </div>
     </div>
 
+    <div id="celebration">
+        <h1>Yaay! 🥰</h1>
+        <img class="celebrate-gif" src="https://will-you-b-my-valentine.vercel.app/_next/image?url=%2Fcelebrate.gif&w=640&q=75" alt="Celebrate">
+        <button id="continueBtn" onclick="showSlideshow()">Continue...</button>
+    </div>
+
     <div id="slideshow">
-        <h1>YAY! ❤️</h1>
-        <p style="color: #666;">Unfortunately I can´t be with you today, <br> 
-		but I hope these otters put a smile in your face 🥰</p>
+        <h1>Unfortunately I can't be with you today, <br> 
+        but I hope these otters put a smile on your face 🥰</h1>
         <img class="slide" src="https://i.pinimg.com/736x/3e/c7/b2/3ec7b23c7e2e20178b30df8ce3f7c6b5.jpg">
         <img class="slide" src="https://miro.medium.com/v2/resize:fit:2000/1*xcdwakgStLJQA4zgoRH3fQ.jpeg">
         <img class="slide" src="https://i.natgeofe.com/n/fa3bf2b9-81d2-417e-8cbd-ff1a178cc3da/Sea-Otter_Protecting-Sealife_FAMILY_0522.jpg">
-		<img class="slide" src="https://www.vmcdn.ca/f/files/via/import/2018/09/21091328_sea-otters-rescued.jpg">
-		<img class="slide" src="https://i.pinimg.com/474x/27/24/d9/2724d9bb736be296415b5fa2406d8043.jpg">
-		<img class="slide" src="https://i.pinimg.com/736x/bf/d9/a4/bfd9a4c45175268c4e3426188a44563b.jpg">
-		<img class="slide" src="https://blog.nwf.org/wp-content/blogs.dir/11/files/2012/09/Sea-Otter-LeDent.jpg">
-		<img class="slide" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3M0TlDRiY_K9o76-usctCepiTdDv1qmYj8A&s">
-		<img class="slide" src="https://www.ncaquariums.com/assets/2815/pasted_otter_pups_stella_mae_and_selene.jpg">
-		<img class="slide" src="https://www.swr.de/swraktuell/rheinland-pfalz/kaiserslautern/1757491117921%2Cotter-babys-zoo-kaiserslautern-besucher-100~_v-16x9@2dL_-6c42aff4e68b43c7868c3240d3ebfa29867457da.jpg">
+        <img class="slide" src="https://www.vmcdn.ca/f/files/via/import/2018/09/21091328_sea-otters-rescued.jpg">
+        <img class="slide" src="https://i.pinimg.com/474x/27/24/d9/2724d9bb736be296415b5fa2406d8043.jpg">
+        <img class="slide" src="https://i.pinimg.com/736x/bf/d9/a4/bfd9a4c45175268c4e3426188a44563b.jpg">
+        <img class="slide" src="https://blog.nwf.org/wp-content/blogs.dir/11/files/2012/09/Sea-Otter-LeDent.jpg">
+        <img class="slide" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3M0TlDRiY_K9o76-usctCepiTdDv1qmYj8A&s">
+        <img class="slide" src="https://www.ncaquariums.com/assets/2815/pasted_otter_pups_stella_mae_and_selene.jpg">
+        <img class="slide" src="https://www.swr.de/swraktuell/rheinland-pfalz/kaiserslautern/1757491117921%2Cotter-babys-zoo-kaiserslautern-besucher-100~_v-16x9@2dL_-6c42aff4e68b43c7868c3240d3ebfa29867457da.jpg">
     </div>
 </div>
 
-	<audio id="bgMusic" loop>
-		<source src="song.mp3" type="audio/mpeg">
-	</audio>
-	
+<audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+    
 <script>
-    // 1. Hintergrund-Herzen erstellen (bleibt gleich)
     function createHeart() {
         const heart = document.createElement('div');
         heart.classList.add('heart');
@@ -176,61 +179,66 @@
         heart.style.animationDuration = Math.random() * 2 + 3 + 's';
         heart.style.fontSize = Math.random() * 20 + 10 + 'px';
         document.body.appendChild(heart);
-        
         setTimeout(() => { heart.remove(); }, 5000);
     }
     setInterval(createHeart, 300);
 
     let hasEscaped = false;
-    let currentScale = 1; // Variable außerhalb speichern für besseres Tracking
+    let currentScale = 1;
+    let heartInterval;
 
     function escapeAndReveal() {
         const noBtn = document.getElementById('noBtn');
         const yesBtn = document.getElementById('yesBtn');
 
-        // Initialisierung beim ersten Hover
         if (!hasEscaped) {
             yesBtn.style.display = 'block';
-            yesBtn.style.animation = 'fadeIn 0.5s forwards';
             document.getElementById('question').innerText = "Wait... did you mean this one? 😉";
-            
-            // CSS Übergang für flüssige Bewegung hinzufügen
+            noBtn.style.position = 'fixed';
             noBtn.style.transition = 'all 0.3s ease-out';
             hasEscaped = true;
         }
 
-        // Sicherheitsabstand zum Rand (Padding)
-        const padding = 20; 
-        
-        // Verfügbaren Platz berechnen
+        const padding = 50; 
         const maxX = window.innerWidth - noBtn.offsetWidth - padding;
         const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-
-        // Neue Position berechnen (mindestens 'padding' Pixel vom Rand entfernt)
         const x = Math.max(padding, Math.random() * maxX);
         const y = Math.max(padding, Math.random() * maxY);
         
-        // Position anwenden
-        noBtn.style.position = 'fixed'; 
         noBtn.style.left = x + 'px';
         noBtn.style.top = y + 'px';
         
-        // Verkleinerungseffekt (stoppt bei 0.5facher Größe)
-        if (currentScale > 0.5) {
+        if (currentScale > 0.4) {
             currentScale -= 0.1;
             noBtn.style.transform = `scale(${currentScale})`;
         }
     }
 
-    // --- Restliche Funktionen (showLove & startSlideshow) bleiben gleich ---
-    let slideIndex = 0;
-    function showLove() {
+    // Zeigt den Celebration Screen
+    function showCelebration() {
+        const music = document.getElementById('bgMusic');
+        music.volume = 0;
+        music.play().catch(e => console.log("Audio play blocked"));
+        
+        let fadeIn = setInterval(() => {
+            if (music.volume < 0.4) { music.volume += 0.05; } 
+            else { clearInterval(fadeIn); }
+        }, 200);
+
         document.getElementById('mainContent').style.display = 'none';
+        document.getElementById('celebration').style.display = 'block';
+        
+        heartInterval = setInterval(createHeart, 100);
+    }
+
+    // Zeigt die Slideshow (wird durch den Continue-Button aufgerufen)
+    function showSlideshow() {
+        document.getElementById('celebration').style.display = 'none';
         document.getElementById('slideshow').style.display = 'block';
-        setInterval(createHeart, 100);
         startSlideshow();
     }
 
+    let slideIndex = 0;
     function startSlideshow() {
         const slides = document.getElementsByClassName("slide");
         for (let i = 0; i < slides.length; i++) {
@@ -241,34 +249,7 @@
         slides[slideIndex-1].style.display = "block";  
         setTimeout(startSlideshow, 2500);
     }
-	
-	function showLove() {
-    const music = document.getElementById('bgMusic');
-    music.volume = 0; // Startet lautlos
-    music.play();
-
-    // Sanftes Einblenden der Musik über 2 Sekunden
-    let fadeIn = setInterval(() => {
-        if (music.volume < 0.4) {
-            music.volume += 0.05;
-        } else {
-            clearInterval(fadeIn);
-        }
-    }, 200);
-
-    document.getElementById('mainContent').style.display = 'none';
-    document.getElementById('slideshow').style.display = 'block';
-    setInterval(createHeart, 100);
-    startSlideshow();
-	}
-	
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
